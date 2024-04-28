@@ -1,32 +1,29 @@
-package ru.bezuglov.wallet.model;
+package ru.bezuglov.wallet.dto;
 
-import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.UUID;
 
 /**
- * Класс кошелек содержит информацию о состоянии счета.
+ * Класс ResponseWalletDto для передачи информации об кошельке.
  *
  * @author Михаил Безуглов
  */
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
-@Table(name = "wallets")
-public class Wallet {
+public class ResponseWalletDto {
 
     /**
      * Идентификатор кошелька.
      */
-    @Id
     private UUID id;
 
     /**
      * Баланс кошелька.
      */
-    private long account;
+    private Long account;
 }
