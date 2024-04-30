@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-wallet
+      author: Bezuglov Mikhail
+      changes:
+        - insert:
+            tableName: wallets
+            columns:
+              - column:
+                  name: id
+                  value: 'afd34943-6704-4e00-bb9c-6e382783f62b'
+              - column:
+                  name: account
+                  value: '10000'
