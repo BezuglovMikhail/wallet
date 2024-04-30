@@ -1,6 +1,5 @@
 package ru.bezuglov.wallet.exeption;
 
-import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.context.support.DefaultMessageSourceResolvable;
@@ -11,7 +10,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import ru.bezuglov.wallet.exeption.exeptions.BadRequestException;
+import ru.bezuglov.wallet.exeption.exeptions.NotFoundException;
 
+/**
+ * Класс ErrorHandler обрабатывает непроверяемые исключения.
+ *
+ * @author Михаил Безуглов
+ */
 @Slf4j
 @RestControllerAdvice
 public class ErrorHandler {
@@ -34,9 +39,9 @@ public class ErrorHandler {
         return new ErrorResponse(HttpStatus.BAD_REQUEST, message);
     }
 
-    @ExceptionHandler(EntityNotFoundException.class)
+    @ExceptionHandler({NotFoundException.class})
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorResponse entityNotFoundException(EntityNotFoundException e) {
+    public ErrorResponse notFoundException(NotFoundException e) {
         log.info(e.getMessage());
         return new ErrorResponse(HttpStatus.NOT_FOUND, e.getMessage());
     }
