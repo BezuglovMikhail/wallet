@@ -25,5 +25,5 @@ public interface WalletService {
     /**
      * Получение баланса кошелька по его UUID.
      */
-    Wallet getById(UUID WALLET_UUID);
+    Wallet findById(UUID WALLET_UUID);
 }

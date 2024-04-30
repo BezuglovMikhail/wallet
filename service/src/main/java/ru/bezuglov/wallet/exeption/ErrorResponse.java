@@ -6,6 +6,11 @@ import org.springframework.http.HttpStatus;
 
 import java.util.Date;
 
+/**
+ * Класс ErrorResponse предоставляет дополнительную информацию о возникшем исключении.
+ *
+ * @author Михаил Безуглов
+ */
 @Data
 public class ErrorResponse {
 

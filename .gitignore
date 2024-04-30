@@ -1,8 +1,8 @@
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+!service/src/main/**/target/
+!service/src/test/**/target/
 
 # Compiled class file
 *.class
@@ -47,8 +47,8 @@ replay_pid*
 /nbdist/
 /.nb-gradle/
 build/
-!**/src/main/**/build/
-!**/src/test/**/build/
+!service/src/main/**/build/
+!service/src/test/**/build/
 
 ### VS Code ###
 .vscode/

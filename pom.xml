@@ -11,8 +11,12 @@
 	<groupId>ru.bezuglov</groupId>
 	<artifactId>wallet</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 	<name>wallet</name>
 	<description>wallet replenishment and balance check</description>
+	<modules>
+		<module>service</module>
+	</modules>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
