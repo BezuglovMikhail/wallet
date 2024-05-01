@@ -1,14 +1,14 @@
 package ru.bezuglov.wallet.controller;
 
 import java.util.UUID;
+
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import ru.bezuglov.wallet.dto.RequestWalletDto;
 import ru.bezuglov.wallet.dto.ResponseWalletDto;
@@ -30,20 +30,10 @@ public class WalletController {
     private final WalletMapper walletMapper;
 
     /**
-     * Эндпойнт добавления нового кошелька.
-     */
-    @PostMapping()
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseWalletDto create() {
-        return walletMapper.mapToDto(walletService.create());
-    }
-
-    /**
      * Эндпойнт изменения баланса кошелька.
      */
     @PostMapping("/wallet")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseWalletDto changeAccount(@RequestBody RequestWalletDto requestWalletDto) {
+    public ResponseWalletDto changeAccount(@Valid @RequestBody RequestWalletDto requestWalletDto) {
         return walletMapper.mapToDto(walletService.changeAccount(requestWalletDto));
     }
 

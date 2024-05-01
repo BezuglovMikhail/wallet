@@ -1,5 +1,6 @@
 package ru.bezuglov.wallet.dto;
 
+import jakarta.validation.constraints.Positive;
 import lombok.*;
 import ru.bezuglov.wallet.util.OperationType;
 
@@ -13,6 +14,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @ToString
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -26,6 +28,7 @@ public class RequestWalletDto {
     /**
      * Сумма операции.
      */
+    @Positive
     private Long amount;
 
     /**
