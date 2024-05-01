@@ -28,24 +28,12 @@ public class WalletServiceImpl implements WalletService {
     private final WalletRepository walletRepository;
 
     /**
-     * Создание нового кошелька.
-     */
-    @Override
-    public Wallet create() {
-        Wallet newWallet = new Wallet();
-        UUID uuid = UUID.randomUUID();
-        newWallet.setId(uuid);
-        return walletRepository.save(newWallet);
-    }
-
-    /**
      * Изменение баланса кошелька:
      * пополнение кошелька, снятие доступных средств.
      */
     @Override
     public Wallet changeAccount(RequestWalletDto requestWalletDto) {
         Wallet wallet = findWallet(requestWalletDto.getWalletId());
-        checkAmount(requestWalletDto.getAmount());
         switch (requestWalletDto.getOperationType()) {
             case DEPOSIT -> wallet.setAccount(rechargeAccount(wallet.getAccount(), requestWalletDto.getAmount()));
             case WITHDRAW -> wallet.setAccount(withdrawAmount(wallet.getAccount(), requestWalletDto.getAmount()));
@@ -63,17 +51,6 @@ public class WalletServiceImpl implements WalletService {
         Wallet wallet = findWallet(walletId);
         log.info("Получен баланс кошелька {}.", walletId);
         return wallet;
-    }
-
-    /**
-     * Проверка суммы изменения баланса.
-     */
-    private void checkAmount(Long amount) {
-        if (amount == null) {
-            throw new BadRequestException("Сумма изменения баланса не может быть пустой!");
-        } else if (amount <= 0) {
-            throw new BadRequestException("Сумма изменения баланса не может быть отрицательной или равной нулю!");
-        }
     }
 
     /**

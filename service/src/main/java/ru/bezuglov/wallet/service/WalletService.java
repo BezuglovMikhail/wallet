@@ -13,11 +13,6 @@ import java.util.UUID;
 public interface WalletService {
 
     /**
-     * Добавление нового кошелька.
-     */
-    Wallet create();
-
-    /**
      * Изменение баланса кошелька.
      */
     Wallet changeAccount(RequestWalletDto requestWalletDto);
