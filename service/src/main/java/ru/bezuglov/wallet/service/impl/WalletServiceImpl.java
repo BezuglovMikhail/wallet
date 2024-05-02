@@ -1,7 +1,9 @@
 package ru.bezuglov.wallet.service.impl;
 
+import jakarta.persistence.LockModeType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.jpa.repository.Lock;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.bezuglov.wallet.dto.RequestWalletDto;
@@ -32,6 +34,7 @@ public class WalletServiceImpl implements WalletService {
      * пополнение кошелька, снятие доступных средств.
      */
     @Override
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
     public Wallet changeAccount(RequestWalletDto requestWalletDto) {
         Wallet wallet = findWallet(requestWalletDto.getWalletId());
         switch (requestWalletDto.getOperationType()) {
@@ -47,6 +50,7 @@ public class WalletServiceImpl implements WalletService {
      */
     @Override
     @Transactional(readOnly = true)
+    @Lock(LockModeType.PESSIMISTIC_READ)
     public Wallet findById(UUID walletId) {
         Wallet wallet = findWallet(walletId);
         log.info("Получен баланс кошелька {}.", walletId);
